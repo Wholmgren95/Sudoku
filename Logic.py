@@ -1,7 +1,7 @@
 import copy
 
 
-# from https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python
+# This function is from https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python
 def createBoard(base):
     side = base * base
 

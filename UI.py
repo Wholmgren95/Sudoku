@@ -42,7 +42,7 @@ class Cell(QToolButton):
         if color == "black":
             self.setStyleSheet('background-color: rgb(200, 200, 200);''color: rgb(0, 0, 0);''font-size: 25pt;')
         if color == "blue":
-            self.setStyleSheet('background-color: rgb(200, 200, 200);''color: rgb(0, 0, 220);''font-size: 25pt;')
+            self.setStyleSheet('background-color: rgb(200, 200, 200);''color: rgb(0, 191, 255);''font-size: 25pt;')
         if color == "red":
             self.setStyleSheet('background-color: rgb(200, 200, 200);''color: rgb(220, 0, 0);''font-size: 25pt;')
         if color == "green":
@@ -133,7 +133,7 @@ class GameWindow(QWidget):
     def initUI(self):
         self.grid_layout.setSpacing(4)
         worker = Worker(self.board)
-        worker.signals.finished.connect(self.applySolved)
+        worker.signals.finished.connect(self.solveFinished)
         # The grid gets a subgrid for each square in board, subgrid has thinner space between --> thinner lines
         for rowIndex in range(3):
             for colIndex in range(3):
@@ -185,7 +185,7 @@ class GameWindow(QWidget):
     def newGame(self):
         self.board = Logic.createBoard(3)
         worker = Worker(self.board)
-        worker.signals.finished.connect(self.applySolved)
+        worker.signals.finished.connect(self.solveFinished)
         self.solveButton.setDisabled(True)
         self.solveButton.setTextColor("red")
         for rowIndex in range(9):
@@ -206,11 +206,11 @@ class GameWindow(QWidget):
     def help(self):
         helpBox = QMessageBox()
         helpBox.information(helpBox, "Information window", "Select a cell and press 'h' to get the correct number "
-            "marked in green. NOTE: This will not work if the board has not been solved yet (solve button marked in "
+            "marked in green. NOTE: This will not work if the board has not been solved yet (when \"Solve puzzle\" is "
             "red).\n\nIf you are unsure about a cell you can press CTRL+NUMBER to get it in blue.\n\n"
             "Every new entry will be checked if valid and marked red if not.", QMessageBox.Ok, QMessageBox.Cancel)
 
-    def applySolved(self, solvedBoard):
+    def solveFinished(self, solvedBoard):
         self.solvedBoard = solvedBoard
         self.solveButton.setDisabled(False)
         self.solveButton.setTextColor("black")

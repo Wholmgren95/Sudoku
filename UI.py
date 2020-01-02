@@ -160,7 +160,7 @@ class GameWindow(QWidget):
         self.threadpool.start(worker)
         newGameButton = Button("New game")
         newGameButton.clicked.connect(self.newGame)
-        self.solveButton.clicked.connect(self.solvePuzzle)
+        self.solveButton.clicked.connect(self.showSolvedPuzzle)
         helpButton = Button("Information")
         helpButton.clicked.connect(self.help)
         self.grid_layout.addWidget(newGameButton)
@@ -175,7 +175,7 @@ class GameWindow(QWidget):
         self.sender().setValue(self.solvedBoard[rowIndex][colIndex])
         self.sender().setTextColor("green")
 
-    def solvePuzzle(self):
+    def showSolvedPuzzle(self):
         for rowIndex in range(9):
             for colIndex in range(9):
                 cell = self.cells[rowIndex][colIndex]

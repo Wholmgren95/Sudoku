@@ -1,7 +1,12 @@
 import copy
 
 
-# This function is from https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python
+'''
+NOTE: This function is taken straight from
+https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python
+This was not part of the scope that I wanted to practise but I still wanted to generate a new puzzle every time to 
+reduce risk of having bugs.
+'''
 def createBoard(base):
     side = base * base
 
